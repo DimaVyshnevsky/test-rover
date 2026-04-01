@@ -7,12 +7,5 @@ namespace Application.Services.UserData
     {
         public bool IsSoundVolume = true;
         public bool IsMusicVolume = true;
-        public GameDifficultyMode GameDifficultyMode;
-    }
-
-    public enum GameDifficultyMode
-    {
-        Easy,
-        Hard
     }
 }

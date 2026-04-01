@@ -1,5 +1,4 @@
-﻿using Application.Services.UserData;
-using Core.UI;
+﻿using Core.UI;
 
 namespace Application.UI
 {
@@ -7,17 +6,14 @@ namespace Application.UI
     {
         private bool _isSoundVolume;
         private bool _isMusicVolume;
-        private GameDifficultyMode _gameDifficultyMode;
 
         public bool IsSoundVolume => _isSoundVolume;
         public bool IsMusicVolume => _isMusicVolume;
-        public GameDifficultyMode GameDifficultyMode => _gameDifficultyMode;
 
-        public SettingsPopupData(bool isSoundVolume, bool isMusicVolume, GameDifficultyMode gameDifficultyMode)
+        public SettingsPopupData(bool isSoundVolume, bool isMusicVolume)
         {
             _isSoundVolume = isSoundVolume;
             _isMusicVolume = isMusicVolume;
-            _gameDifficultyMode = gameDifficultyMode;
         }
     }
 }

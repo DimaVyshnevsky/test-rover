@@ -5,7 +5,6 @@ namespace Application.UI
         public const string SplashScreen = "SplashScreen";
         public const string MenuScreen = "MenuScreen";
         public const string HUDScreen = "HUDScreen";
-        public const string TikTacGameScreen = "TikTacGameScreen";
 
         public const string MessagePopup = "MessagePopup";
         public const string InfoPopup = "InfoPopup";

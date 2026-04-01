@@ -39,8 +39,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - UI
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7957520d802c6c24aa0e2eabadcf5023
+    m_Address: SettingsPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 93c7ff50b2d2b974193b2ff943a276f9
     m_Address: SimpleDecisionPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - UI
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: adc3fa18dadf33340bcc3e6a8c9da551
+    m_Address: MenuScreen
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI

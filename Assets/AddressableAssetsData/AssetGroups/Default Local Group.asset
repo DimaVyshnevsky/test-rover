@@ -20,24 +20,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7957520d802c6c24aa0e2eabadcf5023
-    m_Address: Assets/ProjectAssets/Prefabs/UI/Popups/SettingsPopup.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - UI
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a79b5995ceaf99842a8d78d6ef358c4a
-    m_Address: TikTacGameScreen
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - UI
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: adc3fa18dadf33340bcc3e6a8c9da551
-    m_Address: MenuScreen
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - UI
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7d752932e8fd48a4dac3e89a2995cf67, type: 2}
   m_SchemaSet:

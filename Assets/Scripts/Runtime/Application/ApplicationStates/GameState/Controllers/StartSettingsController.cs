@@ -35,7 +35,7 @@ namespace Application.GameState
             var isSoundVolume = userData.SettingsData.IsSoundVolume;
             var isMusicVolume = userData.SettingsData.IsMusicVolume;
 
-            settingsPopup.Show(new SettingsPopupData(isSoundVolume, isMusicVolume, GameDifficultyMode.Easy), cancellationToken).Forget();
+            settingsPopup.Show(new SettingsPopupData(isSoundVolume, isMusicVolume), cancellationToken).Forget();
             CurrentState = ControllerState.Complete;
             return UniTask.CompletedTask;
         }
