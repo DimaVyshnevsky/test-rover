@@ -1,0 +1,28 @@
+﻿using System.Threading;
+using Core.UI;
+using Cysharp.Threading.Tasks;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Application.UI
+{
+    public class SimpleDecisionPopup : BasePopup
+    {
+        [SerializeField] private Button _confirmButton;
+        [SerializeField] private Button _cancelButton;
+        [SerializeField] private TextMeshProUGUI _message;
+
+        public override async UniTask Show(BasePopupData data, CancellationToken cancellationToken = default)
+        {
+            SimpleDecisionPopupData simpleDecisionPopupData = data as SimpleDecisionPopupData;
+
+            _message.text = simpleDecisionPopupData.Message;
+
+            _confirmButton.onClick.AddListener(DestroyPopup);
+            _cancelButton.onClick.AddListener(DestroyPopup);
+
+            await base.Show(data, cancellationToken);
+        }
+    }
+}

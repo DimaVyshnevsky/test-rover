@@ -1,0 +1,28 @@
+{
+    "name": "Runtime.Application",
+    "rootNamespace": "",
+    "references": [
+        "Zenject",
+        "UniTask",
+        "Unity.TextMeshPro",
+        "CrossPlatform",
+        "UniTask.Addressables",
+        "DOTween.Modules",
+        "UniTask.DOTween",
+        "EazySound",
+        "UnityEngine.Purchasing",
+        "UnityEngine.Purchasing.Stores",
+        "UnityEngine.Purchasing.Codeless",
+        "Core",
+        "UniRx"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
