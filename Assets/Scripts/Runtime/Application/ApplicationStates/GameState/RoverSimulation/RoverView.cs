@@ -37,12 +37,12 @@ namespace Application.GameState.RoverSimulation
 
                 UpdateGroundHit(wheel);
 
-                if (!wheel.isGrounded)
+                if (!wheel.IsGrounded)
                     continue;
 
                 ApplySuspension(wheel);
 
-                float power = wheel.isLeft ? left : right;
+                float power = wheel.IsLeft ? left : right;
 
                 ApplyDrive(wheel, power);
                 ApplyLateralGrip(wheel);
@@ -67,54 +67,54 @@ namespace Application.GameState.RoverSimulation
         {
             float castDistance = _roverConfig.SuspensionRestLength + _roverConfig.SuspensionRange + _roverConfig.WheelRadius;
 
-            wheel.isGrounded = Physics.SphereCast(
-                wheel.point.position,
+            wheel.IsGrounded = Physics.SphereCast(
+                wheel.Point.position,
                 _roverConfig.WheelRadius * 0.9f,
-                -wheel.point.up,
-                out wheel.hit,
+                -wheel.Point.up,
+                out wheel.Hit,
                 castDistance);
 
-            if (!wheel.isGrounded)
+            if (!wheel.IsGrounded)
             {
-                wheel.compression = 0f;
+                wheel.Compression = 0f;
                 return;
             }
 
-            float length = wheel.hit.distance - _roverConfig.WheelRadius;
+            float length = wheel.Hit.distance - _roverConfig.WheelRadius;
             float offset = _roverConfig.SuspensionRestLength - length;
-            wheel.compression = Mathf.Clamp01(offset / _roverConfig.SuspensionRange);
+            wheel.Compression = Mathf.Clamp01(offset / _roverConfig.SuspensionRange);
         }
 
         private void ApplySuspension(WheelView wheel)
         {
-            Vector3 pointVelocity = _rigidbody.GetPointVelocity(wheel.point.position);
-            float verticalVelocity = Vector3.Dot(wheel.point.up, pointVelocity);
+            Vector3 pointVelocity = _rigidbody.GetPointVelocity(wheel.Point.position);
+            float verticalVelocity = Vector3.Dot(wheel.Point.up, pointVelocity);
 
-            float length = wheel.hit.distance - _roverConfig.WheelRadius;
+            float length = wheel.Hit.distance - _roverConfig.WheelRadius;
             float offset = _roverConfig.SuspensionRestLength - length;
 
             float springForce = offset * _roverConfig.SpringStrength;
             float damperForce = -verticalVelocity * _roverConfig.DamperStrength;
 
-            Vector3 force = wheel.point.up * (springForce + damperForce);
-            _rigidbody.AddForceAtPosition(force, wheel.point.position, ForceMode.Force);
+            Vector3 force = wheel.Point.up * (springForce + damperForce);
+            _rigidbody.AddForceAtPosition(force, wheel.Point.position, ForceMode.Force);
         }
 
         private void ApplyDrive(WheelView wheel, float power)
         {
-            Vector3 driveDir = Vector3.ProjectOnPlane(wheel.point.forward, wheel.hit.normal).normalized;
+            Vector3 driveDir = Vector3.ProjectOnPlane(wheel.Point.forward, wheel.Hit.normal).normalized;
             Vector3 force = driveDir * (power * _roverConfig.MotorForce);
 
-            _rigidbody.AddForceAtPosition(force, wheel.point.position, ForceMode.Force);
+            _rigidbody.AddForceAtPosition(force, wheel.Point.position, ForceMode.Force);
         }
 
         private void ApplyLateralGrip(WheelView wheel)
         {
-            Vector3 velocity = _rigidbody.GetPointVelocity(wheel.point.position);
-            float sideSpeed = Vector3.Dot(wheel.point.right, velocity);
+            Vector3 velocity = _rigidbody.GetPointVelocity(wheel.Point.position);
+            float sideSpeed = Vector3.Dot(wheel.Point.right, velocity);
 
-            Vector3 sideForce = -wheel.point.right * (sideSpeed * _roverConfig.LateralGrip);
-            _rigidbody.AddForceAtPosition(sideForce, wheel.point.position, ForceMode.Force);
+            Vector3 sideForce = -wheel.Point.right * (sideSpeed * _roverConfig.LateralGrip);
+            _rigidbody.AddForceAtPosition(sideForce, wheel.Point.position, ForceMode.Force);
         }
 
         private void LimitSpeed()
@@ -128,15 +128,15 @@ namespace Application.GameState.RoverSimulation
 
         private void UpdateWheelVisual(WheelView wheel, float power)
         {
-            if (wheel.isGrounded)
+            if (wheel.IsGrounded)
             {
-                Vector3 pos = wheel.hit.point + wheel.hit.normal * _roverConfig.WheelRadius;
-                wheel.visual.position = pos;
+                Vector3 pos = wheel.Hit.point + wheel.Hit.normal * _roverConfig.WheelRadius;
+                wheel.Visual.position = pos;
             }
 
             float speed = power * 360f * Time.fixedDeltaTime;
-            wheel.wheelRotation += speed;
-            wheel.visual.rotation = wheel.point.rotation * Quaternion.Euler(wheel.wheelRotation, 0f, 0f);
+            wheel.WheelRotation += speed;
+            wheel.Visual.rotation = wheel.Point.rotation * Quaternion.Euler(wheel.WheelRotation, 0f, 0f);
         }
     }
 }

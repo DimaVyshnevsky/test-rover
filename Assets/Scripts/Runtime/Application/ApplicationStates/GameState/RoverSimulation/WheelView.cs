@@ -4,13 +4,13 @@ namespace Application.GameState.RoverSimulation
 {
     public class WheelView : MonoBehaviour
     {
-        public Transform point;
-        public Transform visual;
-        public bool isLeft;
+        public Transform Point;
+        public Transform Visual;
+        public bool IsLeft;
 
-        [HideInInspector] public bool isGrounded;
-        [HideInInspector] public RaycastHit hit;
-        [HideInInspector] public float compression;
-        [HideInInspector] public float wheelRotation;
+        [HideInInspector] public bool IsGrounded;
+        [HideInInspector] public RaycastHit Hit;
+        [HideInInspector] public float Compression;
+        [HideInInspector] public float WheelRotation;
     }
 }

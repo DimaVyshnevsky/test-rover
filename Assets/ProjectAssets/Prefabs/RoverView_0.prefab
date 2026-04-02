@@ -170,12 +170,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a658d2d8495548138ba9622a34f50857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverSimulation.WheelView
-  point: {fileID: 2610037151705804149}
-  visual: {fileID: 2869607001455872954}
-  isLeft: 1
-  isGrounded: 0
-  compression: 0
-  wheelRotation: 0
+  Point: {fileID: 2610037151705804149}
+  Visual: {fileID: 2869607001455872954}
+  IsLeft: 1
+  IsGrounded: 0
+  Compression: 0
+  WheelRotation: 0
 --- !u!1 &6451273060854502043
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,12 +252,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a658d2d8495548138ba9622a34f50857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverSimulation.WheelView
-  point: {fileID: 9000409416586372348}
-  visual: {fileID: 1774474124816948455}
-  isLeft: 1
-  isGrounded: 0
-  compression: 0
-  wheelRotation: 0
+  Point: {fileID: 9000409416586372348}
+  Visual: {fileID: 1774474124816948455}
+  IsLeft: 1
+  IsGrounded: 0
+  Compression: 0
+  WheelRotation: 0
 --- !u!1 &8255682916428156884
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,12 +303,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a658d2d8495548138ba9622a34f50857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverSimulation.WheelView
-  point: {fileID: 6110209958601447250}
-  visual: {fileID: 2541715106700498653}
-  isLeft: 0
-  isGrounded: 0
-  compression: 0
-  wheelRotation: 0
+  Point: {fileID: 6110209958601447250}
+  Visual: {fileID: 2541715106700498653}
+  IsLeft: 0
+  IsGrounded: 0
+  Compression: 0
+  WheelRotation: 0
 --- !u!1 &8256246593274174595
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,12 +354,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a658d2d8495548138ba9622a34f50857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverSimulation.WheelView
-  point: {fileID: 4373763286527532595}
-  visual: {fileID: 2947009753952558076}
-  isLeft: 0
-  isGrounded: 0
-  compression: 0
-  wheelRotation: 0
+  Point: {fileID: 4373763286527532595}
+  Visual: {fileID: 2947009753952558076}
+  IsLeft: 0
+  IsGrounded: 0
+  Compression: 0
+  WheelRotation: 0
 --- !u!1 &9106229988164978167
 GameObject:
   m_ObjectHideFlags: 0
