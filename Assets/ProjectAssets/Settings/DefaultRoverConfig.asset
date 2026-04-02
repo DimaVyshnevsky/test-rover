@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47bd5ffd12db4f58afc9419d6b937d0d, type: 3}
-  m_Name: RoverConfig_0
+  m_Name: DefaultRoverConfig
   m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverConfig
-  MotorForce: 2500
-  MaxSpeed: 8
-  SuspensionRestLength: 0.4
-  SuspensionRange: 0.2
-  SpringStrength: 9000
-  DamperStrength: 1200
-  LateralGrip: 1200
-  WheelRadius: 0.22
+  <SuspensionRestLength>k__BackingField: 0.4
+  <SuspensionRange>k__BackingField: 0.2
+  <SpringStrength>k__BackingField: 9000
+  <DamperStrength>k__BackingField: 1200
+  <MotorForce>k__BackingField: 2500
+  <LateralGrip>k__BackingField: 1200
+  <MaxSpeed>k__BackingField: 8
+  <WheelRadius>k__BackingField: 0.7

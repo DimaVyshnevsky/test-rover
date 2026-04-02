@@ -14,7 +14,8 @@
         "UnityEngine.Purchasing.Stores",
         "UnityEngine.Purchasing.Codeless",
         "Core",
-        "UniRx"
+        "UniRx",
+        "ThirdPartyComponents"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

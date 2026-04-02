@@ -15,8 +15,8 @@ MonoBehaviour:
   m_GroupName: Config
   m_GUID: 25bf8531c0772de41aff3866356a0aec
   m_SerializeEntries:
-  - m_GUID: f38b1f0466978e249906ff9f960458f4
-    m_Address: RoverConfig_0
+  - m_GUID: 57df5d9e1b47259468cec46430ba2957
+    m_Address: LevelConfig_0
     m_ReadOnly: 0
     m_SerializedLabels:
     - Config

@@ -34,18 +34,23 @@ namespace Application.GameState.RoverSimulation
             _roverInputController = roverInputController;
         }
 
-        public override async UniTask Enter(CancellationToken cancellationToken = default)
+        public override UniTask Enter(CancellationToken cancellationToken = default)
         {
             _cancellationTokenSource = new CancellationTokenSource();
+
             var hudScreen = _uiService.GetScreen<HUDScreen>(ConstUI.HUDScreen);
-            //todo: set positions, level config
-            _terrain = await _factory.Create("Terrain_0", _cancellationTokenSource.Token);
-            var roverObject = await _factory.Create("Rover_0", _cancellationTokenSource.Token);
-            _roverView = roverObject.GetComponent<RoverView>();
-            var roverConfig = _settingProvider.Get<RoverConfig>("RoverConfig_0");
-            _roverView.Show(roverConfig);
-            _roverInputController.Run(_cancellationTokenSource.Token).Forget();
             hudScreen.BackToMenuButtonPressEvent += BackToMenu;
+            hudScreen.ShowImmediately(cancellationToken).Forget();
+
+            var levelConfig = _settingProvider.Get<LevelConfig>($"LevelConfig_{GetLevelIndex()}");
+
+            _terrain = _factory.Create(levelConfig.TerrainPrefab);
+            _roverView = _factory.Create<RoverView>(levelConfig.RoverPrefab);
+            _roverView.Show(levelConfig.StartRoverPosition, levelConfig.RoverConfig);
+
+            _roverInputController.Run(_cancellationTokenSource.Token).Forget();
+
+            return UniTask.CompletedTask;
         }
 
         public override UniTask Exit()
@@ -65,6 +70,11 @@ namespace Application.GameState.RoverSimulation
         private void BackToMenu()
         {
             GoTo<MenuState>().Forget();
+        }
+
+        private int GetLevelIndex()
+        {
+            return 0;
         }
     }
 }

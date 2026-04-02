@@ -23,7 +23,8 @@ namespace Application.GameState
         {
             Container.Bind<RoverSimulationState>().AsSingle();
             Container.Bind<RoverInputModel>().AsSingle();
-            Container.BindInterfacesAndSelfTo<KeyboardRoverInputController>().AsSingle();
+            Container.Bind<BaseRoverInputController>().To<KeyboardRoverInputController>().AsCached();
+            Container.BindInterfacesTo<KeyboardRoverInputController>().AsCached();
         }
     }
 }

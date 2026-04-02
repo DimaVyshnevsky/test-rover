@@ -52,13 +52,14 @@ namespace Application.GameState.RoverSimulation
             LimitSpeed();
         }
 
-        public void Show(RoverConfig config)
+        public void Show(Vector3 startRoverPosition, RoverConfig config)
         {
             _roverConfig = config;
 
             if (_centerOfMass != null)
                 _rigidbody.centerOfMass = transform.InverseTransformPoint(_centerOfMass.position);
 
+            transform.position = startRoverPosition;
             _isInitialize = true;
         }
 
