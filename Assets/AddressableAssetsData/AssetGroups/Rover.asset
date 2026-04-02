@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 08a3b4433971c7a42a1d527efe2bac08
   m_SerializeEntries:
   - m_GUID: 3090136fb639d754b8f03422decffbc4
-    m_Address: RoverView_1
+    m_Address: RoverView_0
     m_ReadOnly: 0
     m_SerializedLabels:
     - Rover

@@ -70,6 +70,20 @@ namespace Core.UI
             }
         }
 
+        public async UniTask ShowScreenImmediately(string id, CancellationToken cancellationToken = default)
+        {
+            if (TryGetShownScreen(id, out UiScreen screen))
+            {
+                await screen.ShowImmediately(cancellationToken);
+            }
+            else
+            {
+                screen = CreateScreen(id);
+                _shownScreens.Add(id, screen);
+                await screen.ShowImmediately(cancellationToken);
+            }
+        }
+
         public T GetScreen<T>(string id) where T : UiScreen
         {
             if (!TryGetShownScreen(id, out UiScreen screen))

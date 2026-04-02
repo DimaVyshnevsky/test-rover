@@ -6,6 +6,6 @@ namespace Core
     {
         UniTask Initialize();
         void Dispose();
-        T Get<T>() where T : BaseSettings;
+        T Get<T>(string id) where T : BaseSettings;
     }
 }

@@ -1,4 +1,5 @@
 using Application.GameState.Menu;
+using Application.GameState.RoverSimulation;
 using UnityEngine;
 using Zenject;
 
@@ -11,9 +12,18 @@ namespace Application.GameState
         {
             Container.BindInterfacesAndSelfTo<GameState>().AsSingle();
 
-            Container.Bind<MenuStateController>().AsSingle();
+            Container.Bind<MenuState>().AsSingle();
             Container.Bind<StartSettingsController>().AsSingle();
             Container.Bind<UserDataStateChangeController>().AsSingle();
+
+            BindRoverSimulation();
+        }
+
+        private void BindRoverSimulation()
+        {
+            Container.Bind<RoverSimulationState>().AsSingle();
+            Container.Bind<RoverInputModel>().AsSingle();
+            Container.BindInterfacesAndSelfTo<KeyboardRoverInputController>().AsSingle();
         }
     }
 }

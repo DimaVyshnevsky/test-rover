@@ -12,7 +12,6 @@ namespace Application.GameState.Menu.UI
 
         public event Action PlayButtonPressEvent;
         public event Action SettingsButtonPressEvent;
-        public event Action InfoButtonPressEvent;
 
         private void OnDestroy()
         {
@@ -34,11 +33,6 @@ namespace Application.GameState.Menu.UI
         private void OnSettingsButtonPress()
         {
             SettingsButtonPressEvent?.Invoke();
-        }
-
-        private void OnInfoButtonPress()
-        {
-            InfoButtonPressEvent?.Invoke();
         }
     }
 }

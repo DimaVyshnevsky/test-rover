@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4578145913049800696}
+  - component: {fileID: 7225714323077938163}
   m_Layer: 0
-  m_Name: RoverView
+  m_Name: RoverView_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,6 +33,25 @@ Transform:
   - {fileID: 6669243975952018681}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7225714323077938163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4132530906233940787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783c64d1a3b84e27b8b8363aefb0f896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverSimulation.RoverView
+  _rigidbody: {fileID: 3157891833525488746}
+  _wheels:
+  - {fileID: 7158031007573122172}
+  - {fileID: 8858523953539205170}
+  - {fileID: 4324061150817558068}
+  - {fileID: 8467769609181914818}
+  _centerOfMass: {fileID: 6669243975952018681}
 --- !u!1 &6155654622312690335
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,6 +61,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2610037151705804149}
+  - component: {fileID: 8467769609181914818}
   m_Layer: 0
   m_Name: FLWheelView
   m_TagString: Untagged
@@ -64,6 +85,24 @@ Transform:
   - {fileID: 2869607001455872954}
   m_Father: {fileID: 6669243975952018681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8467769609181914818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6155654622312690335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a658d2d8495548138ba9622a34f50857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverSimulation.WheelView
+  point: {fileID: 2610037151705804149}
+  visual: {fileID: 2869607001455872954}
+  isLeft: 1
+  isGrounded: 0
+  compression: 0
+  wheelRotation: 0
 --- !u!1 &6451273060854502043
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,6 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9000409416586372348}
+  - component: {fileID: 7158031007573122172}
   m_Layer: 0
   m_Name: BLWheelView
   m_TagString: Untagged
@@ -132,6 +172,24 @@ Transform:
   - {fileID: 1774474124816948455}
   m_Father: {fileID: 6669243975952018681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7158031007573122172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6662918755115778111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a658d2d8495548138ba9622a34f50857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverSimulation.WheelView
+  point: {fileID: 9000409416586372348}
+  visual: {fileID: 1774474124816948455}
+  isLeft: 1
+  isGrounded: 0
+  compression: 0
+  wheelRotation: 0
 --- !u!1 &8255682916428156884
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6110209958601447250}
+  - component: {fileID: 4324061150817558068}
   m_Layer: 0
   m_Name: FRWheelView
   m_TagString: Untagged
@@ -164,6 +223,24 @@ Transform:
   - {fileID: 2541715106700498653}
   m_Father: {fileID: 6669243975952018681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4324061150817558068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8255682916428156884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a658d2d8495548138ba9622a34f50857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverSimulation.WheelView
+  point: {fileID: 6110209958601447250}
+  visual: {fileID: 2541715106700498653}
+  isLeft: 0
+  isGrounded: 0
+  compression: 0
+  wheelRotation: 0
 --- !u!1 &8256246593274174595
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4373763286527532595}
+  - component: {fileID: 8858523953539205170}
   m_Layer: 0
   m_Name: BRWheelView
   m_TagString: Untagged
@@ -196,6 +274,24 @@ Transform:
   - {fileID: 2947009753952558076}
   m_Father: {fileID: 6669243975952018681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8858523953539205170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8256246593274174595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a658d2d8495548138ba9622a34f50857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverSimulation.WheelView
+  point: {fileID: 4373763286527532595}
+  visual: {fileID: 2947009753952558076}
+  isLeft: 0
+  isGrounded: 0
+  compression: 0
+  wheelRotation: 0
 --- !u!1 &9106229988164978167
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +304,7 @@ GameObject:
   - component: {fileID: 723511109343853518}
   - component: {fileID: 5457864115841270357}
   - component: {fileID: 5236881212309557799}
+  - component: {fileID: 3157891833525488746}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -307,6 +404,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &3157891833525488746
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106229988164978167}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &396218491523247524
 PrefabInstance:
   m_ObjectHideFlags: 0

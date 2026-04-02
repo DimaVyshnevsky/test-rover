@@ -3,6 +3,6 @@
     public class ConstConfigs
     {
         public const string ConfigLabel = "Config";
-        public const string GameConfig = "GameConfig";
+        public const string RoverConfig = "RoverConfig";
     }
 }

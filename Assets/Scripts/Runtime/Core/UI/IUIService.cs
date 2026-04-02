@@ -9,6 +9,7 @@ namespace Core.UI
         bool IsScreenShowed(string id);
         T GetScreen<T>(string id) where T : UiScreen;
         UniTask ShowScreen(string id, CancellationToken cancellationToken = default);
+        UniTask ShowScreenImmediately(string id, CancellationToken cancellationToken = default);
         UniTask HideScreen(string id, bool destroy, CancellationToken cancellationToken = default);
         void HideScreenImmediately(string id, bool destroy);
         UniTask<BasePopup> ShowPopup(string id, BasePopupData data = null, CancellationToken cancellationToken = default);

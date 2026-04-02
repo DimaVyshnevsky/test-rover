@@ -36,12 +36,14 @@ namespace Application.BootstrapState
 
         public override async UniTask Enter(CancellationToken cancellationToken)
         {
-            _userDataProvider.Initialize();
             await _assetProvider.Initialize(default);
-            await _audioService.Initialize();
             await _uiService.Initialize();
+
+            _uiService.ShowScreenImmediately(ConstUI.LoadingScreen, default).Forget();
+
+            _userDataProvider.Initialize();
+            await _audioService.Initialize();
             await _settingProvider.Initialize();
-            _uiService.ShowScreen(ConstUI.LoadingScreen, default).Forget();
             await _audioSettingsBootstrapController.Run(default);
 
             GoTo<GameState.GameState>(default).Forget();

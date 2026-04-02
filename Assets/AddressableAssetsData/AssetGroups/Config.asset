@@ -16,9 +16,10 @@ MonoBehaviour:
   m_GUID: 25bf8531c0772de41aff3866356a0aec
   m_SerializeEntries:
   - m_GUID: f38b1f0466978e249906ff9f960458f4
-    m_Address: RoverConfig
+    m_Address: RoverConfig_0
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Config
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7d752932e8fd48a4dac3e89a2995cf67, type: 2}

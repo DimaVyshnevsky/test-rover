@@ -8,7 +8,7 @@ namespace Application.Services
     public class SettingsProvider : ISettingProvider
     {
         private readonly IAssetProvider _assetProvider;
-        private Dictionary<Type, BaseSettings> _settings;
+        private Dictionary<string, BaseSettings> _settings;
 
         public SettingsProvider(IAssetProvider assetProvider)
         {
@@ -18,10 +18,10 @@ namespace Application.Services
         public async UniTask Initialize()
         {
             var settings = await _assetProvider.LoadByLabel<BaseSettings>(ConstConfigs.ConfigLabel);
-            _settings = new Dictionary<Type, BaseSettings>(settings.Count);
+            _settings = new Dictionary<string, BaseSettings>(settings.Count);
 
             foreach (var setting in settings)
-                _settings.TryAdd(setting.GetType(), setting);
+                _settings.TryAdd(setting.name, setting);
         }
 
         public void Dispose()
@@ -29,11 +29,11 @@ namespace Application.Services
             _settings?.Clear();
         }
 
-        public T Get<T>() where T : BaseSettings
+        public T Get<T>(string id) where T : BaseSettings
         {
-            if (_settings != null && _settings.ContainsKey(typeof(T)))
+            if (_settings != null && _settings.ContainsKey(id))
             {
-                var setting = _settings[typeof(T)];
+                var setting = _settings[id];
                 return setting as T;
             }
 

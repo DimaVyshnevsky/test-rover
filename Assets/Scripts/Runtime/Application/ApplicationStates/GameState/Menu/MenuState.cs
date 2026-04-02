@@ -1,5 +1,6 @@
 using System.Threading;
 using Application.GameState.Menu.UI;
+using Application.GameState.RoverSimulation;
 using Core.StateMachine;
 using Application.UI;
 using Core.UI;
@@ -8,14 +9,14 @@ using ILogger = Core.ILogger;
 
 namespace Application.GameState.Menu
 {
-    public class MenuStateController : StateController
+    public class MenuState : StateController
     {
         private readonly IUiService _uiService;
         private readonly StartSettingsController _startSettingsController;
 
         private SimpleMenuScreen _menuScreen;
 
-        public MenuStateController(ILogger logger, IUiService uiService, StartSettingsController startSettingsController) : base(logger)
+        public MenuState(ILogger logger, IUiService uiService, StartSettingsController startSettingsController) : base(logger)
         {
             _uiService = uiService;
             _startSettingsController = startSettingsController;
@@ -25,6 +26,7 @@ namespace Application.GameState.Menu
         {
             _menuScreen = _uiService.GetScreen<SimpleMenuScreen>(ConstUI.MenuScreen);
             _menuScreen.SettingsButtonPressEvent += ShowSettingsButtonPopup;
+            _menuScreen.PlayButtonPressEvent += StartSimulationButtonPress;
             _menuScreen.Initialize();
             _menuScreen.ShowAsync(cancellationToken).Forget();
 
@@ -36,6 +38,7 @@ namespace Application.GameState.Menu
         public override async UniTask Exit()
         {
             _menuScreen.SettingsButtonPressEvent -= ShowSettingsButtonPopup;
+            _menuScreen.PlayButtonPressEvent -= StartSimulationButtonPress;
 
             await _uiService.HideScreen(ConstUI.MenuScreen, true);
         }
@@ -43,6 +46,11 @@ namespace Application.GameState.Menu
         private void ShowSettingsButtonPopup()
         {
             _startSettingsController.Run(default).Forget();
+        }
+
+        private void StartSimulationButtonPress()
+        {
+            GoTo<RoverSimulationState>().Forget();
         }
     }
 }
