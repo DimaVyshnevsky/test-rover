@@ -28,6 +28,8 @@ namespace Application.GameState.Menu
             _menuScreen.Initialize();
             _menuScreen.ShowAsync(cancellationToken).Forget();
 
+            _uiService.HideScreen(ConstUI.LoadingScreen, true, default).Forget();
+
             return UniTask.CompletedTask;
         }
 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47bd5ffd12db4f58afc9419d6b937d0d, type: 3}
+  m_Name: RoverConfig
+  m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverConfig
+  MotorForce: 2500
+  MaxSpeed: 8
+  SuspensionRestLength: 0.4
+  SuspensionRange: 0.2
+  SpringStrength: 9000
+  DamperStrength: 1200
+  LateralGrip: 1200
+  WheelRadius: 0.22

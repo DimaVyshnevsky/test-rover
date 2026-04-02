@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: e6e320d2487626342bbab72b01c8a165
   m_SerializeEntries:
   - m_GUID: 04bdfe61d9b7e9a48b3ba636fad4eb18
-    m_Address: SplashScreen
+    m_Address: LoadingScreen
     m_ReadOnly: 0
     m_SerializedLabels:
     - UI

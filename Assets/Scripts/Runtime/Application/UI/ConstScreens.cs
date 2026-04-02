@@ -2,7 +2,7 @@ namespace Application.UI
 {
     public static class ConstUI
     {
-        public const string SplashScreen = "SplashScreen";
+        public const string LoadingScreen = "LoadingScreen";
         public const string MenuScreen = "MenuScreen";
         public const string HUDScreen = "HUDScreen";
 

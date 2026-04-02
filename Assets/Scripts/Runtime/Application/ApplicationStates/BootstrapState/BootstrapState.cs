@@ -41,22 +41,10 @@ namespace Application.BootstrapState
             await _audioService.Initialize();
             await _uiService.Initialize();
             await _settingProvider.Initialize();
-            _uiService.ShowScreen(ConstUI.SplashScreen, default).Forget();
+            _uiService.ShowScreen(ConstUI.LoadingScreen, default).Forget();
             await _audioSettingsBootstrapController.Run(default);
-            UpdateSession();
 
             GoTo<GameState.GameState>(default).Forget();
-        }
-
-        public override async UniTask Exit()
-        {
-            await _uiService.HideScreen(ConstUI.SplashScreen, true);
-        }
-
-        private void UpdateSession()
-        {
-            _userDataProvider.GetUserData().GameData.SessionNumber++;
-            _userDataProvider.SaveUserData();
         }
     }
 }
