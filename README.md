@@ -1,7 +1,8 @@
 # 🚗 Rover Simulation
 
 Проста симуляція 4-колісного **differential-drive ровера** на Unity.
-Unity version: 6000.2.12f1
+
+- **Unity version: 6000.2.12f1**
 
 ## ✨ Можливості
 
@@ -11,6 +12,15 @@ Unity version: 6000.2.12f1
 - Рух по схилах
 - Подолання дрібних перешкод
 - Підтримка різних джерел вводу
+
+---
+
+## 🎮 Старт симуляції
+
+- перейти на сцену Initial
+- натиснути кнопку Start
+
+![SimulationStart](Documentation/SimulationStart.png)
 
 ---
 
@@ -166,6 +176,8 @@ Container.Bind<ITickable>()
 
 Основні файли:
 
+![Structure](Documentation/Structure.png)
+
 - `BaseRoverInputController.cs`
 - `KeyboardRoverInputController.cs`
 - `JoystickRoverInputController.cs`
@@ -176,5 +188,4 @@ Container.Bind<ITickable>()
 - `RoverSimulationState.cs`
 - `RoverView.cs`
 - `WheelView.cs`
-
 ---
