@@ -72,7 +72,9 @@ namespace Application.GameState.RoverSimulation
                 _roverConfig.WheelRadius * 0.9f,
                 -wheel.Point.up,
                 out wheel.Hit,
-                castDistance);
+                castDistance,
+                _roverConfig.GroundMask,
+                QueryTriggerInteraction.Ignore);
 
             if (!wheel.IsGrounded)
             {
@@ -95,8 +97,9 @@ namespace Application.GameState.RoverSimulation
 
             float springForce = offset * _roverConfig.SpringStrength;
             float damperForce = -verticalVelocity * _roverConfig.DamperStrength;
+            float totalForce = Mathf.Max(0f, springForce + damperForce);
 
-            Vector3 force = wheel.Point.up * (springForce + damperForce);
+            Vector3 force = wheel.Point.up * totalForce;
             _rigidbody.AddForceAtPosition(force, wheel.Point.position, ForceMode.Force);
         }
 
@@ -111,9 +114,13 @@ namespace Application.GameState.RoverSimulation
         private void ApplyLateralGrip(WheelView wheel)
         {
             Vector3 velocity = _rigidbody.GetPointVelocity(wheel.Point.position);
-            float sideSpeed = Vector3.Dot(wheel.Point.right, velocity);
 
-            Vector3 sideForce = -wheel.Point.right * (sideSpeed * _roverConfig.LateralGrip);
+            Vector3 driveDir = Vector3.ProjectOnPlane(wheel.Point.forward, wheel.Hit.normal).normalized;
+            Vector3 lateralDir = Vector3.Cross(wheel.Hit.normal, driveDir).normalized;
+
+            float sideSpeed = Vector3.Dot(velocity, lateralDir);
+            Vector3 sideForce = -lateralDir * (sideSpeed * _roverConfig.LateralGrip);
+
             _rigidbody.AddForceAtPosition(sideForce, wheel.Point.position, ForceMode.Force);
         }
 
@@ -136,7 +143,7 @@ namespace Application.GameState.RoverSimulation
 
             float speed = power * 360f * Time.fixedDeltaTime;
             wheel.WheelRotation += speed;
-            wheel.Visual.rotation = wheel.Point.rotation * Quaternion.Euler(wheel.WheelRotation, 0f, 0f);
+            wheel.Visual.rotation = wheel.Point.rotation * Quaternion.Euler(0f, 0f, wheel.WheelRotation);
         }
     }
 }

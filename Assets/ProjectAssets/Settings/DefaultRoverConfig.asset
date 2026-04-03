@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bd5ffd12db4f58afc9419d6b937d0d, type: 3}
   m_Name: DefaultRoverConfig
   m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverConfig
-  <SuspensionRestLength>k__BackingField: 0.4
-  <SuspensionRange>k__BackingField: 0.2
-  <SpringStrength>k__BackingField: 9000
-  <DamperStrength>k__BackingField: 1200
-  <MotorForce>k__BackingField: 2500
-  <LateralGrip>k__BackingField: 1200
-  <MaxSpeed>k__BackingField: 8
-  <WheelRadius>k__BackingField: 0.7
+  <SuspensionRestLength>k__BackingField: 0.22
+  <SuspensionRange>k__BackingField: 0.12
+  <SpringStrength>k__BackingField: 16000
+  <DamperStrength>k__BackingField: 2600
+  <MotorForce>k__BackingField: 2200
+  <LateralGrip>k__BackingField: 2200
+  <MaxSpeed>k__BackingField: 5
+  <WheelRadius>k__BackingField: 0.38
+  <GroundMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 64

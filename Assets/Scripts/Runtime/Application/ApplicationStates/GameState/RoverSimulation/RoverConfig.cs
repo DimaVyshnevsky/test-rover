@@ -17,5 +17,6 @@ namespace Application.GameState.RoverSimulation
         [field: SerializeField] public float LateralGrip { get; private set; } = 1200f;
         [field: SerializeField] public float MaxSpeed { get; private set; } = 8f;
         [field: SerializeField] public float WheelRadius { get; private set; } = 0.2f;
+        [field: SerializeField] public LayerMask GroundMask { get; private set; }
     }
 }
