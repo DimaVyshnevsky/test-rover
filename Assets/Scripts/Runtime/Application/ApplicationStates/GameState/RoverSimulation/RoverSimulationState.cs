@@ -45,8 +45,8 @@ namespace Application.GameState.RoverSimulation
             var levelConfig = _settingProvider.Get<LevelConfig>($"LevelConfig_{GetLevelIndex()}");
 
             _terrain = _factory.Create(levelConfig.TerrainPrefab);
-            _roverView = _factory.Create<RoverView>(levelConfig.RoverPrefab);
-            _roverView.Show(levelConfig.StartRoverPosition, levelConfig.RoverConfig);
+            _roverView = _factory.Create<RoverView>(levelConfig.RoverPrefab, levelConfig.StartRoverPosition, Quaternion.identity, null);
+            _roverView.Show(levelConfig.RoverConfig);
 
             _roverInputController.Run(_cancellationTokenSource.Token).Forget();
 

@@ -52,14 +52,13 @@ namespace Application.GameState.RoverSimulation
             LimitSpeed();
         }
 
-        public void Show(Vector3 startRoverPosition, RoverConfig config)
+        public void Show(RoverConfig config)
         {
             _roverConfig = config;
 
             if (_centerOfMass != null)
                 _rigidbody.centerOfMass = transform.InverseTransformPoint(_centerOfMass.position);
 
-            transform.position = startRoverPosition;
             _isInitialize = true;
         }
 
@@ -143,7 +142,7 @@ namespace Application.GameState.RoverSimulation
 
             float speed = power * 360f * Time.fixedDeltaTime;
             wheel.WheelRotation += speed;
-            wheel.Visual.rotation = wheel.Point.rotation * Quaternion.Euler(0f, 0f, wheel.WheelRotation);
+            wheel.Visual.rotation = wheel.Point.rotation * Quaternion.Euler(wheel.WheelRotation, 0f, 0);
         }
     }
 }

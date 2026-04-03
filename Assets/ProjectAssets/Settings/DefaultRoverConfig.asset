@@ -16,7 +16,7 @@ MonoBehaviour:
   <SuspensionRange>k__BackingField: 0.12
   <SpringStrength>k__BackingField: 16000
   <DamperStrength>k__BackingField: 2600
-  <MotorForce>k__BackingField: 2200
+  <MotorForce>k__BackingField: 4000
   <LateralGrip>k__BackingField: 2200
   <MaxSpeed>k__BackingField: 5
   <WheelRadius>k__BackingField: 0.38
