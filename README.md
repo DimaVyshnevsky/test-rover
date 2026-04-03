@@ -17,8 +17,8 @@
 
 ## 🎮 Старт симуляції
 
-- перейти на сцену Initial
-- натиснути кнопку Start
+- перейти на сцену Initial (Editor)
+- у меню натиснути кнопку Start
 
 ![SimulationStart](Documentation/SimulationStart.png)
 
