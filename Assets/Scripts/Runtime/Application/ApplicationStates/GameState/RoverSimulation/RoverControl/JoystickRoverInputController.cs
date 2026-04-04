@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Application.GameState.RoverSimulation
 {
-    public class JoystickRoverInputController : BaseRoverInputController, ITickable
+    public class JoystickRoverInputController : BaseController, ITickable
     {
         private readonly RoverInputModel _roverInputModel;
 

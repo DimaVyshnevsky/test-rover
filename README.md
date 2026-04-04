@@ -43,10 +43,9 @@ Input → RoverInputModel → RoverView (Physics)
 - Керує життєвим циклом сцени
 - Ініціалізує ровер та пов’язані залежності
 
-#### `BaseRoverInputController`
-Абстракція для системи вводу.
+#### `RoverInputController`
+Активує обрану систему вводу.
 
-Реалізації:
 - `KeyboardRoverInputController`
 - `JoystickRoverInputController`
 
@@ -84,35 +83,16 @@ Input → RoverInputModel → RoverView (Physics)
 Container.Bind<RoverSimulationState>().AsSingle();
 Container.Bind<RoverInputModel>().AsSingle();
 
-Container.Bind<KeyboardRoverInputController>().AsSingle();
-
-Container.Bind<BaseRoverInputController>()
-    .To<KeyboardRoverInputController>()
-    .FromResolve();
-
-Container.Bind<ITickable>()
-    .To<KeyboardRoverInputController>()
-    .FromResolve();
+Container.Bind<RoverInputController>().AsSingle();
+Container.BindInterfacesAndSelfTo<KeyboardRoverInputController>().AsSingle();
+Container.BindInterfacesAndSelfTo<JoystickRoverInputController>().AsSingle();
 ```
 
 ## 🔁 Заміна input controller
 
-Архітектура дозволяє легко замінити джерело вводу.
-Наприклад, щоб переключити керування на джойстик:
+![Joystic](Documentation/Joystic.png)
 
-```csharp
-Container.Bind<JoystickRoverInputController>().AsSingle();
-
-Container.Bind<BaseRoverInputController>()
-    .To<JoystickRoverInputController>()
-    .FromResolve();
-
-Container.Bind<ITickable>()
-    .To<JoystickRoverInputController>()
-    .FromResolve();
-```
-
-Таким чином фізика ровера не залежить від конкретного типу вводу.
+Фізика ровера не залежить від конкретного типу вводу.
 
 ---
 
@@ -178,7 +158,7 @@ Container.Bind<ITickable>()
 
 ![Structure](Documentation/Structure.png)
 
-- `BaseRoverInputController.cs`
+- `RoverInputController.cs`
 - `KeyboardRoverInputController.cs`
 - `JoystickRoverInputController.cs`
 - `LevelConfig.cs`

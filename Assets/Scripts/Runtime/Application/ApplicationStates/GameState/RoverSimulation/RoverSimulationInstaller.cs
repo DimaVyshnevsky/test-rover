@@ -11,16 +11,9 @@ namespace Application.GameState.RoverSimulation
             Container.Bind<RoverSimulationState>().AsSingle();
             Container.Bind<RoverInputModel>().AsSingle();
 
-            Container.Bind<KeyboardRoverInputController>()
-                .AsSingle();
-
-            Container.Bind<BaseRoverInputController>()
-                .To<KeyboardRoverInputController>()
-                .FromResolve();
-
-            Container.Bind<ITickable>()
-                .To<KeyboardRoverInputController>()
-                .FromResolve();
+            Container.Bind<RoverInputController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<KeyboardRoverInputController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<JoystickRoverInputController>().AsSingle();
         }
     }
 }

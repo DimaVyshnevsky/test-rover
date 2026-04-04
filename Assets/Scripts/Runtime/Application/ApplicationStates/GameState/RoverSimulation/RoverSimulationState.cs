@@ -16,7 +16,7 @@ namespace Application.GameState.RoverSimulation
         private readonly ISettingProvider _settingProvider;
         private readonly GameObjectFactory _factory;
         private readonly IUiService _uiService;
-        private readonly BaseRoverInputController _roverInputController;
+        private readonly RoverInputController _roverInputController;
 
         private GameObject _terrain;
         private RoverView _roverView;
@@ -26,7 +26,7 @@ namespace Application.GameState.RoverSimulation
             ISettingProvider settingProvider,
             GameObjectFactory factory,
             IUiService uiService,
-            BaseRoverInputController roverInputController) : base(logger)
+            RoverInputController roverInputController) : base(logger)
         {
             _settingProvider = settingProvider;
             _factory = factory;
