@@ -8,29 +8,22 @@ using UnityEngine;
 
 namespace Application.GameState.RoverSimulation
 {
-    public class RoverSpawnController : BaseController
+    public class RoverSpawnController : BaseController<SpawnRoverRequest>
     {
-        private readonly ISettingProvider _settingProvider;
         private readonly GameObjectFactory _factory;
-        private readonly RoverLevelModel _roverLevelModel;
 
         private RoverView _roverView;
 
-        public RoverSpawnController(ISettingProvider settingProvider,
-            GameObjectFactory factory,
-            RoverLevelModel roverLevelModel)
+        public RoverSpawnController(GameObjectFactory factory)
         {
-            _settingProvider = settingProvider;
             _factory = factory;
-            _roverLevelModel = roverLevelModel;
         }
 
-        public override async UniTask Run(CancellationToken cancellationToken)
+        public override async UniTask Run(SpawnRoverRequest request, CancellationToken cancellationToken)
         {
             await base.Run(cancellationToken);
 
-            var levelConfig = _settingProvider.Get<LevelConfig>($"LevelConfig_{GetLevelIndex()}");
-            SpawnRover(levelConfig);
+            SpawnRover(request.LevelConfig, request.TerrainTransform);
         }
 
         public override async UniTask Stop()
@@ -40,10 +33,10 @@ namespace Application.GameState.RoverSimulation
             UnityEngine.Object.Destroy(_roverView.gameObject);
         }
 
-        private void SpawnRover(LevelConfig config)
+        private void SpawnRover(LevelConfig config, Transform terrainTransform)
         {
-            _roverView = _factory.Create<RoverView>(config.RoverPrefab, Vector3.zero, Quaternion.identity, null);
-            CesiumGlobeAnchor anchor = _roverView.GetComponent<CesiumGlobeAnchor>();
+            _roverView = _factory.Create<RoverView>(config.RoverPrefab, Vector3.zero, Quaternion.identity, terrainTransform);
+            CesiumGlobeAnchor anchor = _roverView.gameObject.AddComponent<CesiumGlobeAnchor>();
 
             anchor.longitudeLatitudeHeight = new double3(
                 config.StartPosition.Longitude,
@@ -52,11 +45,6 @@ namespace Application.GameState.RoverSimulation
             );
 
             _roverView.Show(config.RoverConfig);
-        }
-
-        private int GetLevelIndex()
-        {
-            return _roverLevelModel.LevelIndex;
         }
     }
 }

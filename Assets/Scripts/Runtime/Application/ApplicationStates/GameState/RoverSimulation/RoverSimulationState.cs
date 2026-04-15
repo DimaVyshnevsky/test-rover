@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using Application.GameState.Menu;
 using Application.UI;
+using Core;
 using Core.StateMachine;
 using Core.UI;
 using Cysharp.Threading.Tasks;
@@ -11,36 +12,54 @@ namespace Application.GameState.RoverSimulation
     public class RoverSimulationState : StateController
     {
         private readonly IUiService _uiService;
+        private readonly ISettingProvider _settingProvider;
         private readonly RoverInputController _roverInputController;
         private readonly RoverSpawnController _roverSpawnController;
         private readonly TerrainSpawnController _terrainSpawnController;
-
-        private CancellationTokenSource _cancellationTokenSource;
+        private readonly RoverLevelModel _roverLevelModel;
 
         public RoverSimulationState(ILogger logger,
             IUiService uiService,
             RoverInputController roverInputController,
             TerrainSpawnController terrainSpawnController,
-            RoverSpawnController roverSpawnController) : base(logger)
+            RoverSpawnController roverSpawnController,
+            RoverLevelModel roverLevelModel,
+            ISettingProvider settingProvider) : base(logger)
         {
             _uiService = uiService;
             _roverInputController = roverInputController;
             _terrainSpawnController = terrainSpawnController;
             _roverSpawnController = roverSpawnController;
+            _roverLevelModel = roverLevelModel;
+            _settingProvider = settingProvider;
         }
 
         public override async UniTask Enter(CancellationToken cancellationToken = default)
         {
-            _cancellationTokenSource = new CancellationTokenSource();
+            _uiService.ShowScreenImmediately(ConstUI.LoadingScreen, default).Forget();
+
+            var levelConfig = _settingProvider.Get<LevelConfig>($"LevelConfig_{GetLevelIndex()}");
+
+            var spawnTerrainRequest = new SpawnTerrainRequest()
+            {
+                LevelConfig = levelConfig
+            };
+            await _terrainSpawnController.Run(spawnTerrainRequest, cancellationToken);
+
+            var spawnRoverRequest = new SpawnRoverRequest()
+            {
+                LevelConfig = levelConfig,
+                TerrainTransform = spawnTerrainRequest.TerrainTransformResponse
+            };
+            await _roverSpawnController.Run(spawnRoverRequest, cancellationToken);
+
+            _roverInputController.Run(cancellationToken).Forget();
+
+            _uiService.HideScreenImmediately(ConstUI.LoadingScreen, true);
 
             var hudScreen = _uiService.GetScreen<HUDScreen>(ConstUI.HUDScreen);
             hudScreen.BackToMenuButtonPressEvent += BackToMenu;
-            hudScreen.ShowImmediately(_cancellationTokenSource.Token).Forget();
-
-            await _terrainSpawnController.Run(_cancellationTokenSource.Token);
-            await _roverSpawnController.Run(_cancellationTokenSource.Token);
-
-            _roverInputController.Run(_cancellationTokenSource.Token).Forget();
+            hudScreen.ShowImmediately(cancellationToken).Forget();
         }
 
         public override UniTask Exit()
@@ -48,9 +67,6 @@ namespace Application.GameState.RoverSimulation
             _roverInputController.Stop().Forget();
             _terrainSpawnController.Stop().Forget();
             _roverSpawnController.Stop().Forget();
-
-            _cancellationTokenSource?.Cancel();
-            _cancellationTokenSource?.Dispose();
 
             _uiService.HideScreenImmediately(ConstUI.HUDScreen, true);
 
@@ -60,6 +76,11 @@ namespace Application.GameState.RoverSimulation
         private void BackToMenu()
         {
             GoTo<MenuState>().Forget();
+        }
+
+        private int GetLevelIndex()
+        {
+            return _roverLevelModel.LevelIndex;
         }
     }
 }

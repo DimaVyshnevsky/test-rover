@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252113322116239714}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14521311, y: 0, z: 0, w: 0.9894004}
-  m_LocalPosition: {x: 0, y: 5, z: -10}
+  m_LocalRotation: {x: 0.36670473, y: 0.00000028975668, z: -0.000000114211424, w: 0.93033737}
+  m_LocalPosition: {x: 0, y: 30, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58,7 +58,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 60
+    FieldOfView: 30
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -95,7 +95,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 5, z: -10}
+  FollowOffset: {x: 0, y: 30, z: -30}
 --- !u!114 &7370071204197305901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,7 +354,6 @@ GameObject:
   - component: {fileID: 7225714323077938163}
   - component: {fileID: 1462186954875572966}
   - component: {fileID: 3832880369570165761}
-  - component: {fileID: 7335129439987168965}
   m_Layer: 0
   m_Name: RoverView_0
   m_TagString: Untagged
@@ -455,42 +454,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.5, z: 2}
   m_Center: {x: 0, y: 0.25, z: 0}
---- !u!114 &7335129439987168965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4132530906233940787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f14e1eb550b9a4fb6c0a2f0456845b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: CesiumForUnity::CesiumForUnity.CesiumGlobeAnchor
-  _adjustOrientationForGlobeWhenMoving: 1
-  _detectTransformChanges: 1
-  _localToGlobeFixedMatrix:
-    c0:
-      x: -1
-      y: 0
-      z: 0
-      w: 0
-    c1:
-      x: 0
-      y: 1
-      z: 0
-      w: 0
-    c2:
-      x: 0
-      y: 0
-      z: 1
-      w: 0
-    c3:
-      x: 0
-      y: 0
-      z: 0
-      w: 1
-  _localToGlobeFixedMatrixIsValid: 1
 --- !u!1 &4135421505840270630
 GameObject:
   m_ObjectHideFlags: 0
