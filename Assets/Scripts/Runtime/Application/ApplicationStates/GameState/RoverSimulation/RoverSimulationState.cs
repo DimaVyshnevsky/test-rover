@@ -51,11 +51,11 @@ namespace Application.GameState.RoverSimulation
 
             _roverInputController.Run(cancellationToken).Forget();
 
-            _uiService.HideScreenImmediately(ConstUI.LoadingScreen, true);
-
             var hudScreen = _uiService.GetScreen<HUDScreen>(ConstUI.HUDScreen);
             hudScreen.BackToMenuButtonPressEvent += BackToMenu;
             hudScreen.ShowImmediately(cancellationToken).Forget();
+
+            _uiService.HideScreenImmediately(ConstUI.LoadingScreen, true);
         }
 
         public override UniTask Exit()

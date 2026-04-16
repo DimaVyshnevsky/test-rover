@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Application.GameState.RoverSimulation;
 using Core.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,32 +9,46 @@ namespace Application.GameState.Menu.UI
 {
     public class MenuScreen : UiScreen
     {
-        [SerializeField] private Button _playButton;
+        [SerializeField] private List<LevelItemView> _levelItems;
         [SerializeField] private Button _settingsButton;
+        [SerializeField] private Button _startLevelEditor;
+        [SerializeField] private GameObject _itemViewPrefab;
+        [SerializeField] private Transform _itemsContrainer;
 
-        public event Action PlayButtonPressEvent;
+        public event Action StartLevelEditorButtonPressEvent;
         public event Action SettingsButtonPressEvent;
+        public event Action<LevelConfig> PlayLevelButtonPressEvent;
 
-        private void OnDestroy()
+        public void Initialize(List<LevelConfig> levelConfigs)
         {
-            _playButton.onClick.RemoveAllListeners();
-            _settingsButton.onClick.RemoveAllListeners();
+            _levelItems = new List<LevelItemView>(levelConfigs.Count);
+
+            foreach (var config in levelConfigs)
+            {
+                var itemGameObject = Instantiate(_itemViewPrefab, _itemsContrainer);
+                var itemView = itemGameObject.GetComponent<LevelItemView>();
+                itemView.Initialize(config);
+                itemView.LevelButtonPressedEvent += OnLevelPlayButtonPressed;
+                _levelItems.Add(itemView);
+            }
+
+            _startLevelEditor.onClick.AddListener(OnStartLevelEditorButtonPressed);
+            _settingsButton.onClick.AddListener(OnSettingsButtonPressed);
         }
 
-        public void Initialize()
+        private void OnStartLevelEditorButtonPressed()
         {
-            _playButton.onClick.AddListener(OnPlayButtonPress);
-            _settingsButton.onClick.AddListener(OnSettingsButtonPress);
+            StartLevelEditorButtonPressEvent?.Invoke();
         }
 
-        private void OnPlayButtonPress()
-        {
-            PlayButtonPressEvent?.Invoke();
-        }
-
-        private void OnSettingsButtonPress()
+        private void OnSettingsButtonPressed()
         {
             SettingsButtonPressEvent?.Invoke();
+        }
+
+        private void OnLevelPlayButtonPressed(LevelConfig levelConfig)
+        {
+            PlayLevelButtonPressEvent?.Invoke(levelConfig);
         }
     }
 }

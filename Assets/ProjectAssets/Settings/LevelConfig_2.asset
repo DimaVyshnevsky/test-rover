@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7daca6484b5d4559a91880efb93ad1b2, type: 3}
-  m_Name: LevelConfig_0
+  m_Name: LevelConfig_2
   m_EditorClassIdentifier: Runtime.Application::Application.GameState.RoverSimulation.LevelConfig
-  <Id>k__BackingField: Avdeevka
+  <Id>k__BackingField: Kherson
   <StartPosition>k__BackingField:
-    Latitude: 48.15573574
-    Longitude: 37.7505201
-    Height: 226.7
+    Latitude: 46.6354
+    Longitude: 32.6169
+    Height: 48.5
   <RoverPrefab>k__BackingField: {fileID: 4132530906233940787, guid: 3090136fb639d754b8f03422decffbc4, type: 3}
   <TerrainPrefab>k__BackingField: {fileID: 5143775873710824342, guid: cd5f30cb74a0744428ba2623de4751ff, type: 3}
   <RoverConfig>k__BackingField: {fileID: 11400000, guid: f38b1f0466978e249906ff9f960458f4, type: 2}

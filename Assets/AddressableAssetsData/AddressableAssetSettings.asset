@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: fae211b708f5de14fabf8ff2ee387ce4
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 510f5fa5941a596eabd76c44d65f4a94
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
     - Config
     - Terrain
     - Rover
+    - DefaultLevels
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 0e96844d76b36b84999d80b5937611d9, type: 2}
