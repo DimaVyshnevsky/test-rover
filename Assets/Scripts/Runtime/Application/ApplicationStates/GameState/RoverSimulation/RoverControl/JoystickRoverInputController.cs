@@ -21,8 +21,8 @@ namespace Application.GameState.RoverSimulation
             float move = Input.GetAxis("Vertical");
             float turn = Input.GetAxis("Horizontal");
 
-            move = ApplyDeadZone(move, 0.1f);
-            turn = ApplyDeadZone(turn, 0.1f);
+            move = ApplyDeadZone(move, 0.1f) * -1f;
+            turn = ApplyDeadZone(turn, 0.1f) * -1f;
 
             _roverInputModel.Move = Mathf.Clamp(move, -1f, 1f);
             _roverInputModel.Turn = Mathf.Clamp(turn, -1f, 1f);
