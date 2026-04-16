@@ -14,7 +14,7 @@ namespace Application.GameState.Menu
         private readonly IUiService _uiService;
         private readonly StartSettingsController _startSettingsController;
 
-        private SimpleMenuScreen _menuScreen;
+        private MenuScreen _menuScreen;
 
         public MenuState(ILogger logger, IUiService uiService, StartSettingsController startSettingsController) : base(logger)
         {
@@ -24,12 +24,12 @@ namespace Application.GameState.Menu
 
         public override UniTask Enter(CancellationToken cancellationToken)
         {
-            _menuScreen = _uiService.GetScreen<SimpleMenuScreen>(ConstUI.MenuScreen);
+            _menuScreen = _uiService.GetScreen<MenuScreen>(ConstUI.MenuScreen);
             _menuScreen.SettingsButtonPressEvent += ShowSettingsButtonPopup;
             _menuScreen.PlayButtonPressEvent += StartSimulationButtonPress;
             _menuScreen.Initialize();
             _menuScreen.ShowAsync(cancellationToken).Forget();
-
+            
             _uiService.HideScreen(ConstUI.LoadingScreen, true, default).Forget();
 
             return UniTask.CompletedTask;

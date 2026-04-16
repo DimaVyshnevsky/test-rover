@@ -1,7 +1,6 @@
 ﻿using System.Threading;
 using Application.GameState.Menu;
 using Application.UI;
-using Core;
 using Core.StateMachine;
 using Core.UI;
 using Cysharp.Threading.Tasks;
@@ -12,7 +11,6 @@ namespace Application.GameState.RoverSimulation
     public class RoverSimulationState : StateController
     {
         private readonly IUiService _uiService;
-        private readonly ISettingProvider _settingProvider;
         private readonly RoverInputController _roverInputController;
         private readonly RoverSpawnController _roverSpawnController;
         private readonly TerrainSpawnController _terrainSpawnController;
@@ -23,22 +21,20 @@ namespace Application.GameState.RoverSimulation
             RoverInputController roverInputController,
             TerrainSpawnController terrainSpawnController,
             RoverSpawnController roverSpawnController,
-            RoverLevelModel roverLevelModel,
-            ISettingProvider settingProvider) : base(logger)
+            RoverLevelModel roverLevelModel) : base(logger)
         {
             _uiService = uiService;
             _roverInputController = roverInputController;
             _terrainSpawnController = terrainSpawnController;
             _roverSpawnController = roverSpawnController;
             _roverLevelModel = roverLevelModel;
-            _settingProvider = settingProvider;
         }
 
         public override async UniTask Enter(CancellationToken cancellationToken = default)
         {
             _uiService.ShowScreenImmediately(ConstUI.LoadingScreen, default).Forget();
 
-            var levelConfig = _settingProvider.Get<LevelConfig>($"LevelConfig_{GetLevelIndex()}");
+            var levelConfig = _roverLevelModel.LevelConfig;
 
             var spawnTerrainRequest = new SpawnTerrainRequest()
             {
@@ -76,11 +72,6 @@ namespace Application.GameState.RoverSimulation
         private void BackToMenu()
         {
             GoTo<MenuState>().Forget();
-        }
-
-        private int GetLevelIndex()
-        {
-            return _roverLevelModel.LevelIndex;
         }
     }
 }

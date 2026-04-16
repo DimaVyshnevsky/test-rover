@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using Core.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Application.GameState.Menu.UI
 {
-    public class SimpleMenuScreen : UiScreen
+    public class MenuScreen : UiScreen
     {
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _settingsButton;

@@ -629,7 +629,6 @@ GameObject:
   - component: {fileID: 1799819204381122163}
   - component: {fileID: 6174933061030813964}
   - component: {fileID: 6715618031099180911}
-  - component: {fileID: 5875375055264326496}
   - component: {fileID: 6523352575308957209}
   m_Layer: 5
   m_Name: MenuScreen
@@ -681,21 +680,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &5875375055264326496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6578630765971127254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f927c433f7447e49bafc665f0507c91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Runtime::Application.UI.SimpleMenuScreen
-  _animationComponent: {fileID: 6523352575308957209}
-  _playButton: {fileID: 7992101536696677757}
-  _settingsButton: {fileID: 2229955477367804114}
 --- !u!114 &6523352575308957209
 MonoBehaviour:
   m_ObjectHideFlags: 0
