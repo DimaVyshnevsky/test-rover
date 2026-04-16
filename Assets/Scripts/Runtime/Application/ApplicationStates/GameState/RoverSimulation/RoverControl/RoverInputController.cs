@@ -10,6 +10,8 @@ namespace Application.GameState.RoverSimulation
         private readonly KeyboardRoverInputController _keyboardRoverInputController;
         private readonly RoverInputModel _roverInputModel;
 
+        private CancellationTokenRegistration _cancellationTokenRegistration;
+
         public RoverInputController(JoystickRoverInputController joystickRoverInputController,
             KeyboardRoverInputController keyboardRoverInputController,
             RoverInputModel roverInputModel)
@@ -19,9 +21,11 @@ namespace Application.GameState.RoverSimulation
             _roverInputModel = roverInputModel;
         }
 
-        public override async UniTask Run(CancellationToken cancellationToken)
+        public override UniTask Run(CancellationToken cancellationToken)
         {
-            await base.Run(cancellationToken);
+            base.Run(cancellationToken);
+
+            _cancellationTokenRegistration = cancellationToken.Register(ForceStop);
 
             switch (_roverInputModel.RoverControlType)
             {
@@ -33,6 +37,8 @@ namespace Application.GameState.RoverSimulation
                     _joystickRoverInputController.Run(cancellationToken).Forget();
                     break;
             }
+
+            return UniTask.CompletedTask;
         }
 
         public override async UniTask Stop()
@@ -44,6 +50,14 @@ namespace Application.GameState.RoverSimulation
 
             if(_keyboardRoverInputController.CurrentControllerState == ControllerState.Run)
                 _keyboardRoverInputController.Stop().Forget();
+            
+            _cancellationTokenRegistration.Dispose();
+        }
+
+        private void ForceStop()
+        {
+            if(CurrentState == ControllerState.Run)
+                Stop().Forget();
         }
     }
 }

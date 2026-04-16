@@ -13,17 +13,21 @@ namespace Application.GameState.RoverSimulation
         private readonly GameObjectFactory _factory;
 
         private RoverView _roverView;
+        private CancellationTokenRegistration _cancellationTokenRegistration;
 
         public RoverSpawnController(GameObjectFactory factory)
         {
             _factory = factory;
         }
 
-        public override async UniTask Run(SpawnRoverRequest request, CancellationToken cancellationToken)
+        public override UniTask Run(SpawnRoverRequest request, CancellationToken cancellationToken)
         {
-            await base.Run(cancellationToken);
+            base.Run(cancellationToken);
+            _cancellationTokenRegistration = cancellationToken.Register(ForceStop);
 
             SpawnRover(request.LevelConfig, request.TerrainTransform);
+
+            return UniTask.CompletedTask;
         }
 
         public override async UniTask Stop()
@@ -31,6 +35,7 @@ namespace Application.GameState.RoverSimulation
             await base.Stop();
 
             UnityEngine.Object.Destroy(_roverView.gameObject);
+            _cancellationTokenRegistration.Dispose();
         }
 
         private void SpawnRover(LevelConfig config, Transform terrainTransform)
@@ -45,6 +50,12 @@ namespace Application.GameState.RoverSimulation
             );
 
             _roverView.Show(config.RoverConfig);
+        }
+
+        private void ForceStop()
+        {
+            if(CurrentState == ControllerState.Run)
+                Stop().Forget();
         }
     }
 }
