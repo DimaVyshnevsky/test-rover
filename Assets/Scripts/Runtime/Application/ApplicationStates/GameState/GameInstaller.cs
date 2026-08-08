@@ -14,6 +14,8 @@ namespace Application.GameState
             Container.Bind<MenuState>().AsSingle();
             Container.Bind<StartSettingsController>().AsSingle();
             Container.Bind<UserDataStateChangeController>().AsSingle();
+
+            Container.Bind<LevelsService>().AsSingle();
         }
     }
 }

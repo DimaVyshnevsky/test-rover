@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.cesium.unity": "1.23.1",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.unity.addressables": "2.7.4",
     "com.unity.ai.navigation": "2.0.9",
@@ -11,6 +12,7 @@
     "com.unity.mobile.notifications": "2.4.2",
     "com.unity.multiplayer.center": "1.0.0",
     "com.unity.purchasing": "4.12.2",
+    "com.unity.render-pipelines.high-definition": "17.2.0",
     "com.unity.test-framework": "1.6.0",
     "com.unity.timeline": "1.8.9",
     "com.unity.ugui": "2.0.0",
@@ -47,5 +49,14 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "Cesium",
+      "url": "https://unity.pkg.cesium.com",
+      "scopes": [
+        "com.cesium.unity"
+      ]
+    }
+  ]
 }

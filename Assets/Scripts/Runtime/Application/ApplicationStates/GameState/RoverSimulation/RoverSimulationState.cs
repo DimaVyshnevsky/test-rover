@@ -1,67 +1,69 @@
 ﻿using System.Threading;
 using Application.GameState.Menu;
 using Application.UI;
-using Core;
-using Core.Factory;
 using Core.StateMachine;
 using Core.UI;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 using ILogger = Core.ILogger;
 
 namespace Application.GameState.RoverSimulation
 {
     public class RoverSimulationState : StateController
     {
-        private readonly ISettingProvider _settingProvider;
-        private readonly GameObjectFactory _factory;
         private readonly IUiService _uiService;
         private readonly RoverInputController _roverInputController;
-
-        private GameObject _terrain;
-        private RoverView _roverView;
-        private CancellationTokenSource _cancellationTokenSource;
+        private readonly RoverSpawnController _roverSpawnController;
+        private readonly TerrainSpawnController _terrainSpawnController;
+        private readonly RoverLevelModel _roverLevelModel;
 
         public RoverSimulationState(ILogger logger,
-            ISettingProvider settingProvider,
-            GameObjectFactory factory,
             IUiService uiService,
-            RoverInputController roverInputController) : base(logger)
+            RoverInputController roverInputController,
+            TerrainSpawnController terrainSpawnController,
+            RoverSpawnController roverSpawnController,
+            RoverLevelModel roverLevelModel) : base(logger)
         {
-            _settingProvider = settingProvider;
-            _factory = factory;
             _uiService = uiService;
             _roverInputController = roverInputController;
+            _terrainSpawnController = terrainSpawnController;
+            _roverSpawnController = roverSpawnController;
+            _roverLevelModel = roverLevelModel;
         }
 
-        public override UniTask Enter(CancellationToken cancellationToken = default)
+        public override async UniTask Enter(CancellationToken cancellationToken = default)
         {
-            _cancellationTokenSource = new CancellationTokenSource();
+            _uiService.ShowScreenImmediately(ConstUI.LoadingScreen, default).Forget();
+
+            var levelConfig = _roverLevelModel.LevelConfig;
+
+            var spawnTerrainRequest = new SpawnTerrainRequest()
+            {
+                LevelConfig = levelConfig
+            };
+            await _terrainSpawnController.Run(spawnTerrainRequest, cancellationToken);
+
+            var spawnRoverRequest = new SpawnRoverRequest()
+            {
+                LevelConfig = levelConfig,
+                TerrainTransform = spawnTerrainRequest.TerrainTransformResponse
+            };
+            await _roverSpawnController.Run(spawnRoverRequest, cancellationToken);
+
+            _roverInputController.Run(cancellationToken).Forget();
 
             var hudScreen = _uiService.GetScreen<HUDScreen>(ConstUI.HUDScreen);
             hudScreen.BackToMenuButtonPressEvent += BackToMenu;
             hudScreen.ShowImmediately(cancellationToken).Forget();
 
-            var levelConfig = _settingProvider.Get<LevelConfig>($"LevelConfig_{GetLevelIndex()}");
-
-            _terrain = _factory.Create(levelConfig.TerrainPrefab);
-            _roverView = _factory.Create<RoverView>(levelConfig.RoverPrefab, levelConfig.StartRoverPosition, Quaternion.identity, null);
-            _roverView.Show(levelConfig.RoverConfig);
-
-            _roverInputController.Run(_cancellationTokenSource.Token).Forget();
-
-            return UniTask.CompletedTask;
+            _uiService.HideScreenImmediately(ConstUI.LoadingScreen, true);
         }
 
         public override UniTask Exit()
         {
             _roverInputController.Stop().Forget();
+            _terrainSpawnController.Stop().Forget();
+            _roverSpawnController.Stop().Forget();
 
-            _cancellationTokenSource?.Cancel();
-            _cancellationTokenSource?.Dispose();
-
-            UnityEngine.Object.Destroy(_terrain);
-            UnityEngine.Object.Destroy(_roverView.gameObject);
             _uiService.HideScreenImmediately(ConstUI.HUDScreen, true);
 
             return base.Exit();
@@ -70,11 +72,6 @@ namespace Application.GameState.RoverSimulation
         private void BackToMenu()
         {
             GoTo<MenuState>().Forget();
-        }
-
-        private int GetLevelIndex()
-        {
-            return 0;
         }
     }
 }

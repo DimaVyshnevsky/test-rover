@@ -15,7 +15,8 @@
         "UnityEngine.Purchasing.Codeless",
         "Core",
         "UniRx",
-        "ThirdPartyComponents"
+        "CesiumForUnity",
+        "Unity.Mathematics"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
